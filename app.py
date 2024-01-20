@@ -1,6 +1,15 @@
-from flask import Flask, request
+from flask import Flask, jsonify, request
 import json
 import requests
+import stripe
+
+# This is your Stripe CLI webhook secret for testing your endpoint locally.
+endpoint_secret = None
+
+with open("token.json", "r") as f:
+    js = json.load(f)
+    stripe.api_key = js["STRIPE_API_KEY"]
+    endpoint_secret = js['STRIPE_ENDPOINT_SECRET']
 
 app = Flask(__name__)
 
@@ -8,14 +17,33 @@ DISCORD_BOT_API_URL = 'http://localhost:5000'  # URL to your running discord_bot
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
-    data = json.loads(request.data)
-    print("Webhook received with data:", data)
+    event = None
+    payload = request.data
+    sig_header = request.headers['STRIPE_SIGNATURE']
 
-    # Example handling for a subscription payment event
-    if data['type'] == 'invoice.paid':
-        handle_invoice_paid(data['data']['object'])
+    try:
+        event = stripe.Webhook.construct_event(
+            payload, sig_header, endpoint_secret
+        )
+    except ValueError as e:
+        # Invalid payload
+        raise e
+    except stripe.error.SignatureVerificationError as e:
+        # Invalid signature
+        raise e
 
-    return "Webhook received", 200
+    # Handle the event
+    if event['type'] == 'invoice.payment_succeeded':
+        username = str(event.data.object['custom_fields'])
+        print("Username: " + username)
+    # ... handle other event types
+    else:
+    #   print('Unhandled event type {}'.format(event['type']))
+        pass
+
+    print(jsonify(success=True))
+
+    return jsonify(success=True)
 
 def handle_invoice_paid(invoice):
     # Assuming the Discord user ID is stored in the metadata of the invoice
@@ -35,4 +63,4 @@ def update_discord_role(user_id):
         print(f"Error sending request: {e}")
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='localhost', port=4242, debug=True)

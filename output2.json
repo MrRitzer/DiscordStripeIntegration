@@ -1,0 +1,106 @@
+{
+    "id": "cs_live_a11RmUT14W3pygL4hBrgP9CvBbRyWHfl8pIgfjCtISRtOHPGmnWe1oF7m3",
+    "object": "checkout.session",
+    "after_expiration": null,
+    "allow_promotion_codes": false,
+    "amount_subtotal": 500,
+    "amount_total": 500,
+    "automatic_tax": {
+      "enabled": true,
+      "status": "complete"
+    },
+    "billing_address_collection": "auto",
+    "cancel_url": "https://stripe.com",
+    "client_reference_id": null,
+    "client_secret": null,
+    "consent": null,
+    "consent_collection": {
+      "payment_method_reuse_agreement": null,
+      "promotions": "none",
+      "terms_of_service": "none"
+    },
+    "created": 1705599947,
+    "currency": "usd",
+    "currency_conversion": null,
+    "custom_fields": [
+      {
+        "key": "discordusernamebob1234",
+        "label": {
+          "custom": "Discord Username ( bob1234 )",
+          "type": "custom"
+        },
+        "optional": false,
+        "text": {
+          "maximum_length": null,
+          "minimum_length": null,
+          "value": "kingofants8"
+        },
+        "type": "text"
+      }
+    ],
+    "custom_text": {
+      "after_submit": null,
+      "shipping_address": null,
+      "submit": null,
+      "terms_of_service_acceptance": null
+    },
+    "customer": "cus_POnInDNew509dl",
+    "customer_creation": "if_required",
+    "customer_details": {
+      "address": {
+        "city": "West Fargo",
+        "country": "US",
+        "line1": "745 31st Avenue East",
+        "line2": "APT 407",
+        "postal_code": "58078",
+        "state": "ND"
+      },
+      "email": "marshallbarta50@gmail.com",
+      "name": "Marshall Barta",
+      "phone": null,
+      "tax_exempt": "none",
+      "tax_ids": []
+    },
+    "customer_email": null,
+    "expires_at": 1705686347,
+    "invoice": "in_1OZzhSGPBxdDrNhxVHN3VapT",
+    "invoice_creation": null,
+    "livemode": true,
+    "locale": "auto",
+    "metadata": {},
+    "mode": "subscription",
+    "payment_intent": null,
+    "payment_link": "plink_1OZzeMGPBxdDrNhxDP99mYfK",
+    "payment_method_collection": "always",
+    "payment_method_configuration_details": {
+      "id": "pmc_1OZhapGPBxdDrNhxlLIcXL81",
+      "parent": null
+    },
+    "payment_method_options": null,
+    "payment_method_types": [
+      "card",
+      "link",
+      "cashapp"
+    ],
+    "payment_status": "paid",
+    "phone_number_collection": {
+      "enabled": false
+    },
+    "recovered_from": null,
+    "setup_intent": null,
+    "shipping_address_collection": null,
+    "shipping_cost": null,
+    "shipping_details": null,
+    "shipping_options": [],
+    "status": "complete",
+    "submit_type": "auto",
+    "subscription": "sub_1OZzhSGPBxdDrNhxyUZ8UNFp",
+    "success_url": "https://stripe.com",
+    "total_details": {
+      "amount_discount": 0,
+      "amount_shipping": 0,
+      "amount_tax": 0
+    },
+    "ui_mode": "hosted",
+    "url": null
+  }

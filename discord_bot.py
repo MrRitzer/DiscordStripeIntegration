@@ -1,14 +1,27 @@
 import discord
+import json
 
-client = discord.Client()
+GUILD_ID = None
+ROLE_ID = None
+token = None
 
-# Replace with your actual server and role IDs
-GUILD_ID = 1196859182419284079
-ROLE_ID = 1196890520761405500
+with open("token.json", "r") as f:
+    js = json.load(f)
+    GUILD_ID = int(js['GUILD_ID'])
+    ROLE_ID = int(js['ROLE_ID'])
+    token = js['token']
+
+client = discord.Client(intents=discord.Intents.default())
 
 @client.event
 async def on_ready():
-    print(f'Logged in as {client.user}')
+    for guild in client.guilds:
+        if guild.name == "Bennett's Heart":
+            break
+    print(
+        f'{client.user} is connected to the following guild:\n'
+        f'{guild.name}(id: {guild.id})'
+    )
 
 async def update_role(user_id):
     guild = client.get_guild(GUILD_ID)
@@ -20,6 +33,4 @@ async def update_role(user_id):
     else:
         print("Member or role not found")
 
-# Replace 'YOUR_BOT_TOKEN' with your actual bot token
-token = 'MTE5NzU5NDI5MTY5NTAwOTgwMw.GhK2bQ.wqLILzMJhRFDoWPt76ubfd3qFI0UTw7A08J6aQ'
 client.run(token)
